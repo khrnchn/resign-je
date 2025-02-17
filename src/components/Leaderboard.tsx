@@ -11,7 +11,7 @@ const Leaderboard = () => {
   }, [developers]);
 
   return (
-    <div className="bg-purple-800 rounded-lg p-6 w-[320px]">
+    <div className="bg-purple-800 rounded-lg p-6 w-[400px]">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h2 className="text-3xl font-bold">Leaderboard</h2>

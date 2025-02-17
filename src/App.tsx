@@ -9,14 +9,14 @@ function App() {
     <div className="flex min-h-screen bg-purple-900 text-white">
       <Sidebar />
       <main className="flex-1 p-8">
-        <div className="flex gap-6">
-          <div className="flex-1">
+        <div className="flex gap-8">
+          <div className="flex-1 max-w-[calc(100%-432px)]">
             <Routes>
               <Route path="/" element={<DeveloperList />} />
               <Route path="/awards" element={<AwardsConfig />} />
             </Routes>
           </div>
-          <div className="w-80">
+          <div className="w-[400px]">
             <Leaderboard />
           </div>
         </div>
