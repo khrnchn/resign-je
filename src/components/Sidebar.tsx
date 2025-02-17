@@ -1,40 +1,73 @@
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+const Sidebar = ({ onClose }: SidebarProps) => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleLinkClick = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="w-24 bg-purple-950 py-8 flex flex-col items-center">
-      <div className="mb-12">
-        <span className="text-lg font-bold text-white whitespace-normal text-center">ResignJe</span>
+    <div className="w-full md:w-24 h-full bg-purple-950 py-4 md:py-8 flex flex-col">
+      {/* logo - hidden on mobile since it's in the header */}
+      <div className="hidden md:flex md:mb-12 justify-center">
+        <span className="text-lg font-bold text-white">Techbros</span>
       </div>
 
-      <nav className="flex flex-col items-center space-y-8">
+      <nav className="flex flex-col space-y-1 md:space-y-8 md:items-center px-4 md:px-0">
         <Link
           to="/"
-          className={`w-12 h-12 flex items-center justify-center rounded-lg transition-colors ${isActive('/') ? 'bg-yellow-400 text-purple-900' : 'text-purple-300 hover:text-white'
-            }`}
+          onClick={handleLinkClick}
+          className={`
+            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+            md:w-12 md:h-12 md:justify-center
+            ${isActive('/')
+              ? 'bg-yellow-400 text-purple-900'
+              : 'text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent'
+            }
+          `}
         >
-          <span className="material-icons">group</span>
+          <span className="material-icons mr-3 md:mr-0">group</span>
+          <span className="md:hidden">Developers</span>
         </Link>
 
         <Link
           to="/awards"
-          className={`w-12 h-12 flex items-center justify-center rounded-lg transition-colors ${isActive('/awards') ? 'bg-yellow-400 text-purple-900' : 'text-purple-300 hover:text-white'
-            }`}
+          onClick={handleLinkClick}
+          className={`
+            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+            md:w-12 md:h-12 md:justify-center
+            ${isActive('/awards')
+              ? 'bg-yellow-400 text-purple-900'
+              : 'text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent'
+            }
+          `}
         >
-          <span className="material-icons">emoji_events</span>
+          <span className="material-icons mr-3 md:mr-0">emoji_events</span>
+          <span className="md:hidden">Awards</span>
         </Link>
       </nav>
 
-      <div className="mt-auto">
+      <div className="mt-auto px-4 md:px-0">
         <Link
           to="/settings"
-          className="w-12 h-12 flex items-center justify-center text-purple-300 hover:text-white"
+          onClick={handleLinkClick}
+          className="
+            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+            md:w-12 md:h-12 md:justify-center
+            text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent
+          "
         >
-          <span className="material-icons">settings</span>
+          <span className="material-icons mr-3 md:mr-0">settings</span>
+          <span className="md:hidden">Settings</span>
         </Link>
       </div>
     </div>
