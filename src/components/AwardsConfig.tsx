@@ -1,103 +1,112 @@
-import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
-import { Award, Developer } from '../types';
-import { Award as AwardIcon } from 'lucide-react';
+import { useState } from 'react';
+import { mockAwards } from '../lib/mockData';
+import { Award } from '../types';
 
-export default function AwardsConfig() {
-  const [awards, setAwards] = useState<Award[]>([]);
-  const [developers, setDevelopers] = useState<Developer[]>([]);
-  const [selectedDev, setSelectedDev] = useState('');
-  const [selectedAward, setSelectedAward] = useState('');
+const AwardsConfig = () => {
+  const [awards, setAwards] = useState<Award[]>(mockAwards);
+  const [isAddingAward, setIsAddingAward] = useState(false);
+  const [newAward, setNewAward] = useState<Partial<Award>>({
+    name: '',
+    description: '',
+    icon: ''
+  });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const [awardsData, devsData] = await Promise.all([
-        supabase.from('awards').select('*'),
-        supabase.from('developers').select('*')
-      ]);
-
-      if (awardsData.data) setAwards(awardsData.data);
-      if (devsData.data) setDevelopers(devsData.data);
-    };
-
-    fetchData();
-  }, []);
-
-  const handleAwardAssign = async () => {
-    if (!selectedDev || !selectedAward) return;
-
-    await supabase
-      .from('developer_awards')
-      .insert([
-        {
-          developer_id: selectedDev,
-          award_id: selectedAward,
-          awarded_at: new Date().toISOString()
-        }
-      ]);
-
-    setSelectedDev('');
-    setSelectedAward('');
+  const handleAddAward = () => {
+    if (newAward.name && newAward.description && newAward.icon) {
+      setAwards(prev => [...prev, {
+        ...newAward,
+        id: String(prev.length + 1)
+      } as Award]);
+      setNewAward({ name: '', description: '', icon: '' });
+      setIsAddingAward(false);
+    }
   };
 
   return (
-    <div className="max-w-2xl mx-auto text-white">
-      <h2 className="text-2xl font-bold mb-6">Configure Awards</h2>
-
-      <div className="bg-purple-800 rounded-lg p-6 mb-8">
-        <h3 className="text-xl font-semibold mb-4">Assign Award</h3>
-        <div className="space-y-4">
-          <div>
-            <label className="block mb-2">Select Developer</label>
-            <select
-              value={selectedDev}
-              onChange={(e) => setSelectedDev(e.target.value)}
-              className="w-full p-2 rounded bg-purple-700"
-            >
-              <option value="">Choose a developer...</option>
-              {developers.map((dev) => (
-                <option key={dev.id} value={dev.id}>{dev.name}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-2">Select Award</label>
-            <select
-              value={selectedAward}
-              onChange={(e) => setSelectedAward(e.target.value)}
-              className="w-full p-2 rounded bg-purple-700"
-            >
-              <option value="">Choose an award...</option>
-              {awards.map((award) => (
-                <option key={award.id} value={award.id}>{award.name}</option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            onClick={handleAwardAssign}
-            className="w-full py-2 bg-yellow-400 text-purple-900 rounded font-semibold hover:bg-yellow-300"
-          >
-            Assign Award
-          </button>
-        </div>
+    <div>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Awards Configuration</h1>
+        <button
+          onClick={() => setIsAddingAward(true)}
+          className="bg-yellow-400 text-purple-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-300 transition-colors"
+        >
+          Add New Award
+        </button>
       </div>
 
-      <div className="bg-purple-800 rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">Available Awards</h3>
-        <div className="grid grid-cols-2 gap-4">
-          {awards.map((award) => (
-            <div key={award.id} className="bg-purple-700 p-4 rounded">
-              <div className="flex items-center space-x-2">
-                <AwardIcon className="w-6 h-6" />
-                <h4 className="font-semibold">{award.name}</h4>
+      <div className="grid grid-cols-2 gap-6">
+        {awards.map((award) => (
+          <div key={award.id} className="bg-purple-800 rounded-lg p-6">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center text-2xl">
+                  {award.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">{award.name}</h3>
+                  <p className="text-purple-300">{award.description}</p>
+                </div>
               </div>
-              <p className="text-purple-300 text-sm mt-2">{award.description}</p>
+              <button className="text-purple-300 hover:text-white">
+                <span className="material-icons">more_vert</span>
+              </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+
+      {isAddingAward && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-purple-800 rounded-lg p-6 w-96">
+            <h2 className="text-2xl font-bold mb-6">Add New Award</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Name</label>
+                <input
+                  type="text"
+                  value={newAward.name}
+                  onChange={(e) => setNewAward(prev => ({ ...prev, name: e.target.value }))}
+                  className="w-full bg-purple-700 rounded px-3 py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Description</label>
+                <input
+                  type="text"
+                  value={newAward.description}
+                  onChange={(e) => setNewAward(prev => ({ ...prev, description: e.target.value }))}
+                  className="w-full bg-purple-700 rounded px-3 py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Icon (emoji)</label>
+                <input
+                  type="text"
+                  value={newAward.icon}
+                  onChange={(e) => setNewAward(prev => ({ ...prev, icon: e.target.value }))}
+                  className="w-full bg-purple-700 rounded px-3 py-2"
+                />
+              </div>
+              <div className="flex justify-end gap-4 mt-6">
+                <button
+                  onClick={() => setIsAddingAward(false)}
+                  className="px-4 py-2 text-purple-300 hover:text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddAward}
+                  className="bg-yellow-400 text-purple-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-300"
+                >
+                  Add Award
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default AwardsConfig;
