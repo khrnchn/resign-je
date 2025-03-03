@@ -11,7 +11,7 @@ const Leaderboard = () => {
   }, [developers]);
 
   return (
-    <div className="bg-purple-800 rounded-lg p-6 w-[400px]">
+    <div className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 w-full md:w-[400px]">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h2 className="text-3xl font-bold">Leaderboard</h2>
@@ -42,7 +42,7 @@ const Leaderboard = () => {
               <div className="text-yellow-400 font-bold text-lg mb-2">
                 {topResigners[1].resignation_count}
               </div>
-              <div className="w-20 h-28 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-lg flex items-center justify-center">
+              <div className="w-20 h-28 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center">
                 <span className="text-2xl font-bold text-white/70">2</span>
               </div>
             </div>
@@ -71,7 +71,7 @@ const Leaderboard = () => {
               <div className="text-yellow-400 font-bold text-xl mb-2">
                 {topResigners[0].resignation_count}
               </div>
-              <div className="w-24 h-36 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-lg flex items-center justify-center">
+              <div className="w-24 h-36 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center">
                 <span className="text-3xl font-bold text-yellow-400">1</span>
               </div>
             </div>
@@ -95,7 +95,7 @@ const Leaderboard = () => {
               <div className="text-yellow-400 font-bold text-lg mb-2">
                 {topResigners[2].resignation_count}
               </div>
-              <div className="w-20 h-24 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-lg flex items-center justify-center">
+              <div className="w-20 h-24 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center">
                 <span className="text-2xl font-bold text-white/70">3</span>
               </div>
             </div>
@@ -107,7 +107,7 @@ const Leaderboard = () => {
         {topResigners.slice(3).map((dev, index) => (
           <div
             key={dev.id}
-            className="flex items-center gap-4 p-2 rounded-lg hover:bg-purple-700/30 transition-colors"
+            className="flex items-center gap-4 p-2 rounded-2xl hover:bg-purple-700/30 transition-colors"
           >
             <div className="w-6 text-base font-medium text-purple-300">
               {index + 4}
