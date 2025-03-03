@@ -3,7 +3,6 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import DeveloperList from "./components/DeveloperList";
 import AwardsConfig from "./components/AwardsConfig";
-import Leaderboard from "./components/Leaderboard";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -23,18 +22,6 @@ function App() {
         </button>
         <div className="flex-1 flex items-center justify-between">
           <h1 className="text-xl font-bold">Techbros</h1>
-          <div className="">
-            <div className="relative flex flex-col md:flex-row">
-              <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-purple-300">
-                search
-              </span>
-              <input
-                type="text"
-                placeholder="Search"
-                className="bg-purple-800/50 pl-10 pr-4 py-2 rounded-full text-sm placeholder-purple-300 w-[200px] focus:outline-none focus:ring-2 focus:ring-purple-400"
-              />
-            </div>
-          </div>
         </div>
       </div>
 
@@ -52,18 +39,11 @@ function App() {
         </div>
 
         {/* main content */}
-        <main className="flex-1 px-4 md:p-8 pt-20 md:pt-8 h-screen overflow-y-scroll">
-          <div className="flex flex-col gap-6">
-            <div className="flex-1">
-              <Routes>
-                <Route path="/" element={<DeveloperList />} />
-                <Route path="/awards" element={<AwardsConfig />} />
-              </Routes>
-            </div>
-            <div className="w-full">
-              <Leaderboard />
-            </div>
-          </div>
+        <main className="flex-1 p-4 md:p-8 pt-20 md:pt-8 h-screen overflow-y-scroll">
+          <Routes>
+            <Route path="/" element={<DeveloperList />} />
+            <Route path="/awards" element={<AwardsConfig />} />
+          </Routes>
         </main>
       </div>
 

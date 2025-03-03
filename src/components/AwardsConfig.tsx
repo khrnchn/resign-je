@@ -34,7 +34,7 @@ const AwardsConfig = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {awards.map((award) => (
           <div key={award.id} className="bg-purple-800 rounded-lg p-6">
             <div className="flex items-start justify-between mb-4">
