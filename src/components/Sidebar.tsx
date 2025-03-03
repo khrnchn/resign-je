@@ -22,7 +22,7 @@ const Sidebar = ({ onClose }: SidebarProps) => {
         <span className="text-lg font-bold text-white">Techbros</span>
       </div>
 
-      <nav className="flex flex-col space-y-1 md:space-y-8 md:items-center px-4 md:px-0">
+      <nav className="flex flex-col space-y-1 md:space-y-8 md:items-center px-4 md:px-0 mt-20 md:mt-4">
         <Link
           to="/"
           onClick={handleLinkClick}
@@ -56,7 +56,7 @@ const Sidebar = ({ onClose }: SidebarProps) => {
         </Link>
       </nav>
 
-      <div className="mt-auto px-4 md:px-0">
+      <div className="mt-auto flex justify-start md:justify-center px-4 md:px-0">
         <Link
           to="/settings"
           onClick={handleLinkClick}
