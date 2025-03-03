@@ -19,7 +19,13 @@ const Sidebar = ({ onClose }: SidebarProps) => {
     <div className="w-full md:w-24 h-full bg-purple-950 py-4 md:py-8 flex flex-col">
       {/* logo - hidden on mobile since it's in the header */}
       <div className="hidden md:flex md:mb-12 justify-center">
-        <span className="text-lg font-bold text-white">Techbros</span>
+        <Link 
+          to="/" 
+          onClick={handleLinkClick}
+          className="text-lg font-bold text-white hover:text-purple-300 transition-colors"
+        >
+          Techbros
+        </Link>
       </div>
 
       <nav className="flex flex-col space-y-1 md:space-y-8 md:items-center px-4 md:px-0 mt-20 md:mt-4">

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import DeveloperList from "./components/DeveloperList";
 import AwardsConfig from "./components/AwardsConfig";
+import { Link } from "react-router-dom";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,7 +22,9 @@ function App() {
           </span>
         </button>
         <div className="flex-1 flex items-center justify-between">
-          <h1 className="text-xl font-bold">Techbros</h1>
+          <Link to="/" className="text-xl font-bold hover:text-purple-300 transition-colors">
+            Techbros
+          </Link>
         </div>
       </div>
 
@@ -39,7 +42,7 @@ function App() {
         </div>
 
         {/* main content */}
-        <main className="flex-1 p-4 md:p-8 pt-20 md:pt-8 h-screen overflow-y-scroll">
+        <main className="flex-1 px-4 md:p-8 pt-20 md:pt-8 h-screen overflow-y-scroll">
           <Routes>
             <Route path="/" element={<DeveloperList />} />
             <Route path="/awards" element={<AwardsConfig />} />

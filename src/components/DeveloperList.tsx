@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDevelopers } from '../lib/hooks';
 import Leaderboard from './Leaderboard';
+import { Link } from 'react-router-dom';
 
 const DeveloperList = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -11,7 +12,9 @@ const DeveloperList = () => {
     <div>
       {/* search bar - only visible on desktop */}
       <div className="hidden md:flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Techbros</h1>
+        <Link to="/" className="text-3xl font-bold hover:text-purple-300 transition-colors">
+          Techbros
+        </Link>
         <div className="relative">
           <input
             type="text"
