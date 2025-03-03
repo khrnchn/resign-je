@@ -44,7 +44,7 @@ export const mockDevelopers: Developer[] = [
         title: 'Software Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/C5103AQEK823gfleTdQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1576129961129?e=1745452800&v=beta&t=d1gtAFCi3XupWhrVcrIas10r19-jVR3_iZiS7mq7z80',
-        resignation_count: 1,
+        resignation_count: 2,
         created_at: '2024-03-01'
     },
     {
