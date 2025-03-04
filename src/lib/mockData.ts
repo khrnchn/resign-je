@@ -14,7 +14,7 @@ export const mockDevelopers: Developer[] = [
     {
         id: '2',
         name: 'Ariff Nazhan',
-        title: 'Software Engineer',
+        title: 'Machine Learning Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQGLyoafFZPO5Q/profile-displayphoto-shrink_400_400/B56ZOuTVuTGgAk-/0/1733796125967?e=1745452800&v=beta&t=RxVckrNO71Lx4-76H5tq_wocNmAO2h0Bn50mX_sZqGA',
         resignation_count: 4,
@@ -23,7 +23,7 @@ export const mockDevelopers: Developer[] = [
     {
         id: '3',
         name: 'Azwan',
-        title: 'Software Engineer',
+        title: 'Senior Data Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFuh-wY3vCAWw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1705242889127?e=1745452800&v=beta&t=E__vk32xsgqRPJLiYwafzsmyrMZgOmeEBSAz6A9L1Zw',
         resignation_count: 3,
@@ -41,7 +41,7 @@ export const mockDevelopers: Developer[] = [
     {
         id: '5',
         name: 'Catqeel',
-        title: 'Software Engineer',
+        title: 'AI Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFRDBNcRVWYBQ/profile-displayphoto-shrink_800_800/B56ZUpMoerHsAc-/0/1740152932958?e=1746662400&v=beta&t=4-v_lTebUKyfP2k1o3DwWVjFhifaP6TMMRipNBQW8OM',
         resignation_count: 2,
@@ -50,7 +50,7 @@ export const mockDevelopers: Developer[] = [
     {
         id: '6',
         name: 'Halim Shukor',
-        title: 'Software Engineer',
+        title: 'Machine Learning Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQH8iMXw7q9N-w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1724582694562?e=1745452800&v=beta&t=5b9onEHNQu5sbjwaHCx97iXrcfREspDyK0_eU6Fcehw',
         resignation_count: 0,
