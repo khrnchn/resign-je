@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import DeveloperList from "./components/DeveloperList";
 import AwardsConfig from "./components/AwardsConfig";
 import { Link } from "react-router-dom";
+import ShouldIResignGame from "./components/ShouldIResign";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,7 +23,10 @@ function App() {
           </span>
         </button>
         <div className="flex-1 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold hover:text-purple-300 transition-colors">
+          <Link
+            to="/"
+            className="text-xl font-bold hover:text-purple-300 transition-colors"
+          >
             Techbros
           </Link>
         </div>
@@ -46,6 +50,7 @@ function App() {
           <Routes>
             <Route path="/" element={<DeveloperList />} />
             <Route path="/awards" element={<AwardsConfig />} />
+            <Route path="/should-i-resign" element={<ShouldIResignGame />} />
           </Routes>
         </main>
       </div>

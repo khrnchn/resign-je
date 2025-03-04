@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   onClose?: () => void;
@@ -19,8 +19,8 @@ const Sidebar = ({ onClose }: SidebarProps) => {
     <div className="w-full md:w-24 h-full bg-purple-950 py-4 md:py-8 flex flex-col">
       {/* logo - hidden on mobile since it's in the header */}
       <div className="hidden md:flex md:mb-12 justify-center">
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           onClick={handleLinkClick}
           className="text-lg font-bold text-white hover:text-purple-300 transition-colors"
         >
@@ -35,9 +35,10 @@ const Sidebar = ({ onClose }: SidebarProps) => {
           className={`
             flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
             md:w-12 md:h-12 md:justify-center
-            ${isActive('/')
-              ? 'bg-yellow-400 text-purple-900'
-              : 'text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent'
+            ${
+              isActive("/")
+                ? "bg-yellow-400 text-purple-900"
+                : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
             }
           `}
         >
@@ -49,15 +50,33 @@ const Sidebar = ({ onClose }: SidebarProps) => {
           to="/awards"
           onClick={handleLinkClick}
           className={`
-            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
-            md:w-12 md:h-12 md:justify-center
-            ${isActive('/awards')
-              ? 'bg-yellow-400 text-purple-900'
-              : 'text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent'
-            }
-          `}
+    flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+    md:w-12 md:h-12 md:justify-center
+    ${
+      isActive("/awards")
+        ? "bg-yellow-400 text-purple-900"
+        : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
+    }
+  `}
         >
           <span className="material-icons mr-3 md:mr-0">emoji_events</span>
+          <span className="md:hidden">Awards</span>
+        </Link>
+
+        <Link
+          to="/should-i-resign"
+          onClick={handleLinkClick}
+          className={`
+    flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+    md:w-12 md:h-12 md:justify-center
+    ${
+      isActive("/should-i-resign")
+        ? "bg-yellow-400 text-purple-900"
+        : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
+    }
+  `}
+        >
+          <span className="material-icons mr-3 md:mr-0">rebase_edit</span>
           <span className="md:hidden">Awards</span>
         </Link>
       </nav>
