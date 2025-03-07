@@ -8,7 +8,7 @@ export const mockDevelopers: Developer[] = [
         title: 'Software Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQE3SpKuOBIBaQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731686302044?e=1745452800&v=beta&t=w2l8Rvh7K5z4_VbMe6JGJmANnibEr4HkvW5_MNL8zhY',
-        resignation_count: 3,
+        resignation_count: 4,
         created_at: '2024-01-01'
     },
     {
@@ -55,7 +55,7 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQH8iMXw7q9N-w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1724582694562?e=1745452800&v=beta&t=5b9onEHNQu5sbjwaHCx97iXrcfREspDyK0_eU6Fcehw',
         resignation_count: 0,
         created_at: '2024-03-15'
-    }
+    },
 ];
 
 // mock awards data
