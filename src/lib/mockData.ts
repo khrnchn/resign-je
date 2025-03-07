@@ -56,6 +56,15 @@ export const mockDevelopers: Developer[] = [
         resignation_count: 0,
         created_at: '2024-03-15'
     },
+    {
+        id: '7',
+        name: 'Haikal Tahar',
+        title: 'Frontend Developer',
+        location: 'Malaysia',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHHtY7MJgLOCA/profile-displayphoto-shrink_800_800/B56ZSsEzmnGsAc-/0/1738053729439?e=1746662400&v=beta&t=yXuo8843a_pNXc0sQQm3PKPvMVS4BQZbviGcxbUyYgY',
+        resignation_count: 0,
+        created_at: '2025-03-07'
+    }
 ];
 
 // mock awards data
@@ -128,6 +137,12 @@ export const mockDeveloperAwards: DeveloperAward[] = [
         id: '5',
         developer_id: '5',
         award_id: '6', // Fresh Start for Catqeel (1 resignation)
+        awarded_at: '2024-03-01T00:00:00Z'
+    },
+    {
+        id: '6',
+        developer_id: '7',
+        award_id: '6', // Fresh Start for Haikal (0 resignation)
         awarded_at: '2024-03-01T00:00:00Z'
     }
 ]; 
