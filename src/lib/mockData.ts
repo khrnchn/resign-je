@@ -64,6 +64,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHHtY7MJgLOCA/profile-displayphoto-shrink_800_800/B56ZSsEzmnGsAc-/0/1738053729439?e=1746662400&v=beta&t=yXuo8843a_pNXc0sQQm3PKPvMVS4BQZbviGcxbUyYgY',
         resignation_count: 0,
         created_at: '2025-03-07'
+    },
+    {
+        id: '8',
+        name: 'Rafizi Ramli',
+        title: 'Minister of Economy',
+        location: 'Malaysia',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHEWi7VEL8F1A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1712638118571?e=1753920000&v=beta&t=trXI5Hu2iYm_SV2RMoMNgH8gnMMZyIaIIhseJK6r32E',
+        resignation_count: 1,
+        created_at: '2025-05-28'
     }
 ];
 
