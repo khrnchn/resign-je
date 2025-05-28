@@ -73,6 +73,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHEWi7VEL8F1A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1712638118571?e=1753920000&v=beta&t=trXI5Hu2iYm_SV2RMoMNgH8gnMMZyIaIIhseJK6r32E',
         resignation_count: 1,
         created_at: '2025-05-28'
+    },
+    {
+        id: '9',
+        name: 'Nik Nazmi',
+        title: 'Minister of Natural Resources and Environmental Sustainability',
+        location: 'Malaysia',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQERwHrjIfTxhg/profile-displayphoto-shrink_800_800/B56Zb3SpHcGoAg-/0/1747905582861?e=1753920000&v=beta&t=ZXm4BTBmdNcr51jyjZgsQJwQM_V4pOKbCJq3CSV9aEM',
+        resignation_count: 1,
+        created_at: '2025-05-28'
     }
 ];
 
