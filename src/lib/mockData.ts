@@ -82,6 +82,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQERwHrjIfTxhg/profile-displayphoto-shrink_800_800/B56Zb3SpHcGoAg-/0/1747905582861?e=1753920000&v=beta&t=ZXm4BTBmdNcr51jyjZgsQJwQM_V4pOKbCJq3CSV9aEM',
         resignation_count: 1,
         created_at: '2025-05-28'
+    },
+    {
+        id: '10',
+        name: 'Nuzul Fikrie',
+        title: 'Developer',
+        location: 'Malaysia',
+        avatar_url: 'https://avatars.githubusercontent.com/u/5245744?v=4',
+        resignation_count: 1,
+        created_at: '2025-05-21'
     }
 ];
 
