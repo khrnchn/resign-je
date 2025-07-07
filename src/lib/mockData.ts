@@ -91,6 +91,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://avatars.githubusercontent.com/u/5245744?v=4',
         resignation_count: 1,
         created_at: '2025-05-21'
+    },
+    {
+        id: '11',
+        name: 'Hakim Z',
+        title: 'Site Reliability Engineer',
+        location: 'Malaysia',
+        avatar_url: 'https://i.pinimg.com/736x/78/fa/ed/78faed1c22be1a1a4d46a5738762690e.jpg',
+        resignation_count: 1,
+        created_at: '2025-07-07'
     }
 ];
 
