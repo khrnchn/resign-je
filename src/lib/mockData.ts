@@ -43,7 +43,7 @@ export const mockDevelopers: Developer[] = [
         name: 'Hazqeel',
         title: 'Chief Technology Officer',
         location: 'Malaysia',
-        avatar_url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fhazqeelafyq.com%2F&psig=AOvVaw364aLnL1maXyqdsvvDIdev&ust=1752933042708000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLjH_svGxo4DFQAAAAAdAAAAABAE',
+        avatar_url: 'https://hazqeelafyq.com/assets/img/profile.png',
         resignation_count: 2,
         created_at: '2024-03-01'
     },
