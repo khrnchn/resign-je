@@ -40,10 +40,10 @@ export const mockDevelopers: Developer[] = [
     },
     {
         id: '5',
-        name: 'Catqeel',
-        title: 'AI Engineer',
+        name: 'Hazqeel',
+        title: 'Chief Technology Officer',
         location: 'Malaysia',
-        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFRDBNcRVWYBQ/profile-displayphoto-shrink_800_800/B56ZUpMoerHsAc-/0/1740152932958?e=1746662400&v=beta&t=4-v_lTebUKyfP2k1o3DwWVjFhifaP6TMMRipNBQW8OM',
+        avatar_url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fhazqeelafyq.com%2F&psig=AOvVaw364aLnL1maXyqdsvvDIdev&ust=1752933042708000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLjH_svGxo4DFQAAAAAdAAAAABAE',
         resignation_count: 2,
         created_at: '2024-03-01'
     },
@@ -61,7 +61,7 @@ export const mockDevelopers: Developer[] = [
         name: 'Haikal Tahar',
         title: 'Frontend Developer',
         location: 'Malaysia',
-        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHHtY7MJgLOCA/profile-displayphoto-shrink_800_800/B56ZSsEzmnGsAc-/0/1738053729439?e=1746662400&v=beta&t=yXuo8843a_pNXc0sQQm3PKPvMVS4BQZbviGcxbUyYgY',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHHtY7MJgLOCA/profile-displayphoto-shrink_400_400/B56ZSsEzmnGsAg-/0/1738053729439?e=1755734400&v=beta&t=a575vvtSXueYiVzvr920pQi37xFLnnt36cNri-UlYnY',
         resignation_count: 0,
         created_at: '2025-03-07'
     },
