@@ -3,33 +3,33 @@ import React, { useState, useEffect } from "react";
 const getProbabilityMessage = (probability: number, result: "yes" | "no") => {
   if (probability < 0.1)
     return result === "yes"
-      ? "🤔 A whisper in the wind... Maybe it's time?"
-      : "⛓ Not yet. The chains still hold you back.";
+      ? "🤔 Hmm... maybe time to consider lah?"
+      : "⛓ Not yet lah. Still can tahan a bit more.";
   if (probability < 0.2)
     return result === "yes"
-      ? "💭 The thought lingers... You should resign."
-      : "🌀 You cling to the past, but for how long?";
+      ? "💭 The feeling is there already... You should resign je."
+      : "🌀 Still clinging on ah? For how long more?";
   if (probability < 0.35)
     return result === "yes"
-      ? "⚖️ The weight of your choice is crushing... Quit before it's too late!"
-      : "🪢 Denial grips you tighter. Can you hold on forever?";
+      ? "⚖️ Wah, the stress is killing you! Resign before too late!"
+      : "🪢 Denial mode activated. Can tahan forever meh?";
   if (probability < 0.5)
     return result === "yes"
-      ? "🚪 The exit is right there. Walk through it!"
-      : "⚡ Your resolve is crumbling. Do you really want to stay?";
+      ? "🚪 The exit door is there lah! Just walk through!"
+      : "⚡ Your patience running out already. Really want to stay?";
   return result === "yes"
-    ? "🔥 The time has come. Escape before you burn out!"
-    : "⏳ Fate is inevitable, but you still resist... Why?";
+    ? "🔥 Confirm plus chop! Time to resign je!"
+    : "⏳ Destiny calling already, but you still resist... Why leh?";
 };
 
 const getDenialMessage = (clicks: number) => {
   if (clicks < 15)
-    return "😰 You shake your head in disbelief... But deep down, you know you must resign.";
+    return "😰 You geleng kepala in disbelief... But deep down, you know you must resign je.";
   if (clicks < 25)
-    return "😨 You laugh nervously. Maybe if you click again, the answer will change? (It won’t)";
+    return "😨 You ketawa nervously. Maybe if you click again, the answer will change? (Spoiler: It won't lah)";
   if (clicks < 40)
-    return "😭 Your hands tremble. You refuse to accept it... But you must resign.";
-  return "🫥 Silence. You stare at the screen, knowing the truth all along. Resign.";
+    return "😭 Your hands gementar already. You refuse to accept... But you must resign je.";
+  return "🫥 Senyap. You pandang screen, knowing the truth all along. Resign je lah.";
 };
 
 const ShouldIResignGame: React.FC = () => {
@@ -78,7 +78,7 @@ const ShouldIResignGame: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full text-center p-4 relative gap-4">
-      <h1 className="text-2xl font-bold">Should I Resign?</h1>
+      <h1 className="text-2xl font-bold">Should I Resign Ah?</h1>
       <button
         onClick={handleClick}
         className="px-6 py-3 bg-yellow-400 text-purple-900 font-semibold rounded-lg shadow-md hover:bg-yellow-600"
@@ -101,12 +101,12 @@ const ShouldIResignGame: React.FC = () => {
         )}
       </div>
       <a
-        href="https://www.google.com/search?q=resign+letter&oq=resign+letter&sourceid=chrome&ie=UTF-8"
+        href="https://www.google.com/search?q=resignation+letter+malaysia&oq=resignation+letter+malaysia&sourceid=chrome&ie=UTF-8"
         target="_blank"
         rel="noopener noreferrer"
         className="opacity-30 hover:opacity-50"
       >
-        Find resign letters
+        Cari resignation letter templates
       </a>
       <button
         onClick={handleReset}

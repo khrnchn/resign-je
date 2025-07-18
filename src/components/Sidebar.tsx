@@ -24,7 +24,7 @@ const Sidebar = ({ onClose }: SidebarProps) => {
           onClick={handleLinkClick}
           className="text-lg font-bold text-white hover:text-purple-300 transition-colors"
         >
-          Techbros
+          🇲🇾
         </Link>
       </div>
 
@@ -42,41 +42,58 @@ const Sidebar = ({ onClose }: SidebarProps) => {
             }
           `}
         >
-          <span className="material-icons mr-3 md:mr-0">group</span>
-          <span className="md:hidden">Developers</span>
+          <span className="material-icons mr-3 md:mr-0">home</span>
+          <span className="md:hidden">Home</span>
         </Link>
 
         <Link
-          to="/awards"
+          to="/hall-of-fame"
           onClick={handleLinkClick}
           className={`
-    flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
-    md:w-12 md:h-12 md:justify-center
-    ${
-      isActive("/awards")
-        ? "bg-yellow-400 text-purple-900"
-        : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
-    }
-  `}
+            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+            md:w-12 md:h-12 md:justify-center
+            ${
+              isActive("/hall-of-fame")
+                ? "bg-yellow-400 text-purple-900"
+                : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
+            }
+          `}
         >
-          <span className="material-icons mr-3 md:mr-0">emoji_events</span>
-          <span className="md:hidden">Awards</span>
+          <span className="material-icons mr-3 md:mr-0">military_tech</span>
+          <span className="md:hidden">Hall of Fame</span>
         </Link>
 
         <Link
           to="/should-i-resign"
           onClick={handleLinkClick}
           className={`
-    flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
-    md:w-12 md:h-12 md:justify-center
-    ${
-      isActive("/should-i-resign")
-        ? "bg-yellow-400 text-purple-900"
-        : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
-    }
-  `}
+            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+            md:w-12 md:h-12 md:justify-center
+            ${
+              isActive("/should-i-resign")
+                ? "bg-yellow-400 text-purple-900"
+                : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
+            }
+          `}
         >
-          <span className="material-icons mr-3 md:mr-0">rebase_edit</span>
+          <span className="material-icons mr-3 md:mr-0">psychology</span>
+          <span className="md:hidden">Should I Resign?</span>
+        </Link>
+
+        <Link
+          to="/awards"
+          onClick={handleLinkClick}
+          className={`
+            flex items-center px-4 md:px-0 py-3 md:py-0 rounded-lg transition-colors
+            md:w-12 md:h-12 md:justify-center
+            ${
+              isActive("/awards")
+                ? "bg-yellow-400 text-purple-900"
+                : "text-purple-300 hover:text-white hover:bg-purple-800/50 md:hover:bg-transparent"
+            }
+          `}
+        >
+          <span className="material-icons mr-3 md:mr-0">emoji_events</span>
           <span className="md:hidden">Awards</span>
         </Link>
       </nav>

@@ -1,13 +1,27 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import DeveloperList from "./components/DeveloperList";
 import AwardsConfig from "./components/AwardsConfig";
+import LandingPage from "./components/LandingPage";
+import Settings from "./components/Settings";
 import { Link } from "react-router-dom";
 import ShouldIResignGame from "./components/ShouldIResign";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+  const isLandingPage = location.pathname === "/";
+
+  if (isLandingPage) {
+    return (
+      <div className="min-h-screen bg-purple-900 text-white">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+        </Routes>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-purple-900 text-white">
@@ -27,7 +41,7 @@ function App() {
             to="/"
             className="text-xl font-bold hover:text-purple-300 transition-colors"
           >
-            Techbros
+            🇲🇾 Resign Je
           </Link>
         </div>
       </div>
@@ -48,9 +62,10 @@ function App() {
         {/* main content */}
         <main className="flex-1 px-4 md:p-8 pt-20 md:pt-8 h-screen overflow-y-scroll">
           <Routes>
-            <Route path="/" element={<DeveloperList />} />
+            <Route path="/hall-of-fame" element={<DeveloperList />} />
             <Route path="/awards" element={<AwardsConfig />} />
             <Route path="/should-i-resign" element={<ShouldIResignGame />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </main>
       </div>

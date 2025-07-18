@@ -14,8 +14,8 @@ const Leaderboard = () => {
     <div className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 w-full md:w-[400px]">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h2 className="text-3xl font-bold">Leaderboard</h2>
-          <p className="text-purple-300 text-sm">Top Resigners</p>
+          <h2 className="text-3xl font-bold">🏆 Top Resigners</h2>
+          <p className="text-purple-300 text-sm">Malaysian Champions</p>
         </div>
         <div className="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center rotate-12 hover:rotate-0 transition-transform">
           <span className="material-icons text-purple-900 text-2xl">emoji_events</span>

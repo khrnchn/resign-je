@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDevelopers } from '../lib/hooks';
 import Leaderboard from './Leaderboard';
-import { Link } from 'react-router-dom';
 
 const DeveloperList = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -12,9 +11,12 @@ const DeveloperList = () => {
     <div>
       {/* search bar - only visible on desktop */}
       <div className="hidden md:flex justify-between items-center mb-8">
-        <Link to="/" className="text-3xl font-bold hover:text-purple-300 transition-colors">
-          Techbros
-        </Link>
+        <div>
+          <h1 className="text-3xl font-bold hover:text-purple-300 transition-colors mb-2">
+            👑 Hall of Fame
+          </h1>
+          <p className="text-purple-300">Malaysian Developers Yang Dah Resign</p>
+        </div>
         <div className="relative">
           <input
             type="text"
@@ -73,11 +75,19 @@ const DeveloperList = () => {
                   </div>
 
                   <h3 className="text-xl font-bold mb-1">{dev.name}</h3>
-                  <p className="text-purple-300 mb-4">{dev.title}</p>
+                  <p className="text-purple-300 mb-2">{dev.title}</p>
+                  <p className="text-green-400 text-sm font-semibold mb-4">
+                    🎉 Resigned {Math.floor(Math.random() * 365 + 1)} days ago
+                  </p>
 
                   <div className="flex items-center text-sm text-purple-300 mb-4">
                     <span className="material-icons text-sm mr-1">location_on</span>
                     {dev.location}
+                  </div>
+
+                  <div className="flex items-center text-sm text-yellow-400 mb-4">
+                    <span className="material-icons text-sm mr-1">trending_up</span>
+                    {dev.resignation_count} resignations
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -100,9 +110,9 @@ const DeveloperList = () => {
               <div className="bg-purple-800/50 backdrop-blur-sm rounded-full p-4 mb-4">
                 <span className="material-icons text-4xl text-purple-300">search_off</span>
               </div>
-              <h3 className="text-2xl font-bold mb-2">No developers found</h3>
+              <h3 className="text-2xl font-bold mb-2">No developers found lah</h3>
               <p className="text-purple-300 max-w-md">
-                We couldn't find any developers matching "{searchQuery}". Try a different search term.
+                Cannot find any developers matching "{searchQuery}". Try different search term or be the first to join our Hall of Fame!
               </p>
             </div>
           )}
@@ -115,7 +125,7 @@ const DeveloperList = () => {
             className="md:hidden flex justify-between items-center bg-purple-800/50 backdrop-blur-sm rounded-2xl p-4 mb-2 cursor-pointer"
             onClick={() => setIsLeaderboardOpen(!isLeaderboardOpen)}
           >
-            <h2 className="text-xl font-bold">Leaderboard</h2>
+            <h2 className="text-xl font-bold">🏆 Top Resigners</h2>
             <div className="bg-purple-700 p-1.5 rounded-lg flex items-center justify-center h-8 w-8">
               <span className="material-icons text-xl">
                 {isLeaderboardOpen ? "expand_less" : "expand_more"}
