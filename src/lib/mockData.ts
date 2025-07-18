@@ -7,7 +7,7 @@ export const mockDevelopers: Developer[] = [
         name: 'Farhan Helmy',
         title: 'Software Engineer',
         location: 'Malaysia',
-        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQE3SpKuOBIBaQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731686302044?e=1745452800&v=beta&t=w2l8Rvh7K5z4_VbMe6JGJmANnibEr4HkvW5_MNL8zhY',
+        avatar_url: 'https://www.farhanhelmy.com/farhan.png',
         resignation_count: 4,
         created_at: '2024-01-01'
     },
@@ -16,7 +16,7 @@ export const mockDevelopers: Developer[] = [
         name: 'Ariff Nazhan',
         title: 'Machine Learning Engineer',
         location: 'Malaysia',
-        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQGLyoafFZPO5Q/profile-displayphoto-shrink_400_400/B56ZOuTVuTGgAk-/0/1733796125967?e=1745452800&v=beta&t=RxVckrNO71Lx4-76H5tq_wocNmAO2h0Bn50mX_sZqGA',
+        avatar_url: 'https://avatars.githubusercontent.com/u/58643675?v=4',
         resignation_count: 4,
         created_at: '2024-01-15'
     },
@@ -25,7 +25,7 @@ export const mockDevelopers: Developer[] = [
         name: 'Azwan',
         title: 'Senior Data Engineer',
         location: 'Malaysia',
-        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFuh-wY3vCAWw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1705242889127?e=1745452800&v=beta&t=E__vk32xsgqRPJLiYwafzsmyrMZgOmeEBSAz6A9L1Zw',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFuh-wY3vCAWw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705242889127?e=1755734400&v=beta&t=6ynjX48z1uZdTs8l0SPA0zAlZqyBf522fYg99Y3Kzvo',
         resignation_count: 3,
         created_at: '2024-02-01'
     },
@@ -52,7 +52,7 @@ export const mockDevelopers: Developer[] = [
         name: 'Halim Shukor',
         title: 'Machine Learning Engineer',
         location: 'Malaysia',
-        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQH8iMXw7q9N-w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1724582694562?e=1745452800&v=beta&t=5b9onEHNQu5sbjwaHCx97iXrcfREspDyK0_eU6Fcehw',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFJIen-mXWHOA/profile-displayphoto-shrink_400_400/B56ZYo664EGcAg-/0/1744443258594?e=1755734400&v=beta&t=QWm0__gbr258xqUn_MIVpXUQ9P6Qlk8gUFZ5O1wQXFw',
         resignation_count: 0,
         created_at: '2024-03-15'
     },
