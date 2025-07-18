@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Award } from '../types';
 import { mockAwards, mockDeveloperAwards, mockDevelopers } from './mockData';
+import { updateMetadata } from './metadata';
 
 export const useDevelopers = (searchQuery: string = '') => {
     const [developers] = useState(mockDevelopers);
@@ -25,4 +26,10 @@ export const useDevelopers = (searchQuery: string = '') => {
         developers: filteredDevelopers,
         getDeveloperAwards
     };
+};
+
+export const useMetadata = (path: string) => {
+    useEffect(() => {
+        updateMetadata(path);
+    }, [path]);
 }; 

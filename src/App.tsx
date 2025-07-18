@@ -7,11 +7,15 @@ import LandingPage from "./components/LandingPage";
 import Settings from "./components/Settings";
 import { Link } from "react-router-dom";
 import ShouldIResignGame from "./components/ShouldIResign";
+import { useMetadata } from "./lib/hooks";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const isLandingPage = location.pathname === "/";
+  
+  // Update metadata based on current route
+  useMetadata(location.pathname);
 
   if (isLandingPage) {
     return (
