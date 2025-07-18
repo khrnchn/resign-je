@@ -8,7 +8,7 @@ export const mockDevelopers: Developer[] = [
         title: 'Software Engineer',
         location: 'Malaysia',
         avatar_url: 'https://www.farhanhelmy.com/farhan.png',
-        resignation_count: 4,
+        resignation_count: 5,
         created_at: '2024-01-01'
     },
     {
@@ -44,7 +44,7 @@ export const mockDevelopers: Developer[] = [
         title: 'Chief Technology Officer',
         location: 'Malaysia',
         avatar_url: 'https://hazqeelafyq.com/assets/img/profile.png',
-        resignation_count: 2,
+        resignation_count: 3,
         created_at: '2024-03-01'
     },
     {
@@ -62,7 +62,7 @@ export const mockDevelopers: Developer[] = [
         title: 'Frontend Developer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQHHtY7MJgLOCA/profile-displayphoto-shrink_400_400/B56ZSsEzmnGsAg-/0/1738053729439?e=1755734400&v=beta&t=a575vvtSXueYiVzvr920pQi37xFLnnt36cNri-UlYnY',
-        resignation_count: 0,
+        resignation_count: 1,
         created_at: '2025-03-07'
     },
     {
