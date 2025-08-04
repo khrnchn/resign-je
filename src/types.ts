@@ -5,7 +5,7 @@ export interface Developer {
   location: string;
   avatar_url: string;
   resignation_count: number;
-  created_at: string;
+  last_resigned_at: string;
 }
 
 export interface Award {

@@ -17,7 +17,7 @@ const DeveloperList = () => {
         return b.resignation_count - a.resignation_count;
       case 'recent':
       default:
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        return new Date(b.last_resigned_at).getTime() - new Date(a.last_resigned_at).getTime();
     }
   });
 
@@ -138,7 +138,7 @@ const DeveloperList = () => {
                     </div>
                     <div className="bg-purple-700/50 backdrop-blur-sm px-4 py-1 rounded-full">
                       <span className="text-sm font-medium">
-                        {new Date(dev.created_at).toLocaleDateString('en-US', {
+                        {new Date(dev.last_resigned_at).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric'
                         })}
@@ -149,7 +149,7 @@ const DeveloperList = () => {
                   <h3 className="text-xl font-bold mb-1">{dev.name}</h3>
                   <p className="text-purple-300 mb-2">{dev.title}</p>
                   <p className="text-green-400 text-sm font-semibold mb-4">
-                    🎉 Resigned {Math.floor((new Date().getTime() - new Date(dev.created_at).getTime()) / (1000 * 60 * 60 * 24))} days ago
+                    🎉 Resigned {Math.floor((new Date().getTime() - new Date(dev.last_resigned_at).getTime()) / (1000 * 60 * 60 * 24))} days ago
                   </p>
 
                   <div className="flex items-center text-sm text-purple-300 mb-4">
