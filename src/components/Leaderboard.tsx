@@ -1,14 +1,19 @@
 import { useMemo } from 'react';
 import { useDevelopers } from '../lib/hooks';
+import { LeaderboardSkeleton } from './SkeletonLoader';
 
 const Leaderboard = () => {
-  const { developers } = useDevelopers('');
+  const { developers, isLoading } = useDevelopers('');
 
   const topResigners = useMemo(() => {
     return [...developers]
       .sort((a, b) => b.resignation_count - a.resignation_count)
       .slice(0, 10);
   }, [developers]);
+
+  if (isLoading) {
+    return <LeaderboardSkeleton />;
+  }
 
   return (
     <div className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 w-full md:w-[400px]">
@@ -39,11 +44,16 @@ const Leaderboard = () => {
               <div className="text-xs text-purple-300 mb-2 max-w-[80px] truncate">
                 {topResigners[1].title}
               </div>
-              <div className="text-yellow-400 font-bold text-lg mb-2">
+              <div className="text-yellow-400 font-bold text-lg mb-2 flex items-center gap-1">
                 {topResigners[1].resignation_count}
+                {topResigners[1].resignation_count > topResigners[2]?.resignation_count && (
+                  <span className="material-icons text-green-400 text-sm animate-bounce">trending_up</span>
+                )}
               </div>
-              <div className="w-20 h-28 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center">
-                <span className="text-2xl font-bold text-white/70">2</span>
+              <div className="w-20 h-28 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-400/20 to-transparent" 
+                     style={{ height: `${Math.min((topResigners[1].resignation_count / topResigners[0].resignation_count) * 100, 100)}%` }}></div>
+                <span className="text-2xl font-bold text-white/70 relative z-10">2</span>
               </div>
             </div>
           )}
@@ -68,11 +78,13 @@ const Leaderboard = () => {
               <div className="text-xs text-purple-300 mb-2 max-w-[100px] truncate">
                 {topResigners[0].title}
               </div>
-              <div className="text-yellow-400 font-bold text-xl mb-2">
+              <div className="text-yellow-400 font-bold text-xl mb-2 flex items-center gap-1">
                 {topResigners[0].resignation_count}
+                <span className="material-icons text-yellow-400 text-lg animate-pulse">star</span>
               </div>
-              <div className="w-24 h-36 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center">
-                <span className="text-3xl font-bold text-yellow-400">1</span>
+              <div className="w-24 h-36 bg-gradient-to-b from-yellow-400/20 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-yellow-400/30 to-transparent animate-pulse"></div>
+                <span className="text-3xl font-bold text-yellow-400 relative z-10">1</span>
               </div>
             </div>
           )}
@@ -95,8 +107,10 @@ const Leaderboard = () => {
               <div className="text-yellow-400 font-bold text-lg mb-2">
                 {topResigners[2].resignation_count}
               </div>
-              <div className="w-20 h-24 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center">
-                <span className="text-2xl font-bold text-white/70">3</span>
+              <div className="w-20 h-24 bg-gradient-to-b from-purple-700/40 to-purple-700/20 backdrop-blur-sm rounded-t-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-400/20 to-transparent" 
+                     style={{ height: `${Math.min((topResigners[2].resignation_count / topResigners[0].resignation_count) * 100, 100)}%` }}></div>
+                <span className="text-2xl font-bold text-white/70 relative z-10">3</span>
               </div>
             </div>
           )}
@@ -123,8 +137,16 @@ const Leaderboard = () => {
               <div className="font-medium truncate">{dev.name}</div>
               <div className="text-sm text-purple-300 truncate">{dev.title}</div>
             </div>
-            <div className="text-yellow-400 font-bold text-lg tabular-nums">
-              {dev.resignation_count}
+            <div className="flex items-center gap-2">
+              <div className="text-yellow-400 font-bold text-lg tabular-nums">
+                {dev.resignation_count}
+              </div>
+              <div className="w-16 h-2 bg-purple-700/30 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min((dev.resignation_count / topResigners[0].resignation_count) * 100, 100)}%` }}
+                ></div>
+              </div>
             </div>
           </div>
         ))}

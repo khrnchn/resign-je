@@ -102,19 +102,34 @@ const LandingPage: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {successStories.map((story, index) => (
-              <div key={index} className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 hover:scale-105 transform transition-all duration-200">
+              <div 
+                key={index} 
+                className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 hover:scale-105 transform transition-all duration-300 hover:shadow-xl hover:bg-purple-700/50 group"
+                style={{ 
+                  animationDelay: `${index * 0.2}s`,
+                  animation: 'fadeInUp 0.6s ease-out forwards'
+                }}
+              >
                 <div className="flex items-center mb-4">
-                  <img
-                    src={story.avatar}
-                    alt={story.name}
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
+                  <div className="relative">
+                    <img
+                      src={story.avatar}
+                      alt={story.name}
+                      className="w-12 h-12 rounded-full mr-4 ring-2 ring-purple-400/50 group-hover:ring-yellow-400/50 transition-all duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>
                   <div>
-                    <div className="font-semibold">{story.name}</div>
+                    <div className="font-semibold group-hover:text-yellow-300 transition-colors">{story.name}</div>
                     <div className="text-sm text-purple-300">{story.role}</div>
                   </div>
                 </div>
-                <p className="text-purple-200 italic">"{story.quote}"</p>
+                <p className="text-purple-200 italic leading-relaxed">"{story.quote}"</p>
+                <div className="mt-4 flex items-center text-xs text-purple-400">
+                  <span className="material-icons text-sm mr-1">verified</span>
+                  Verified Success Story
+                </div>
               </div>
             ))}
           </div>
@@ -129,9 +144,16 @@ const LandingPage: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {resignationSigns.map((sign, index) => (
-              <div key={index} className="flex items-center p-4 bg-purple-800/50 backdrop-blur-sm rounded-xl hover:bg-purple-700/50 transition-colors">
-                <span className="text-red-400 mr-3">⚠️</span>
-                <span>{sign}</span>
+              <div 
+                key={index} 
+                className="flex items-center p-4 bg-purple-800/50 backdrop-blur-sm rounded-xl hover:bg-purple-700/50 transition-all duration-300 hover:scale-102 hover:shadow-lg group"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  animation: 'slideInLeft 0.5s ease-out forwards'
+                }}
+              >
+                <span className="text-red-400 mr-3 group-hover:animate-bounce text-xl">⚠️</span>
+                <span className="group-hover:text-white transition-colors">{sign}</span>
               </div>
             ))}
           </div>
@@ -161,41 +183,45 @@ const LandingPage: React.FC = () => {
               href="https://www.google.com/search?q=resignation+letter+template"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-200 block"
+              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-300 block group hover:shadow-xl hover:bg-purple-700/50"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.1s forwards' }}
             >
-              <div className="text-3xl mb-3">📝</div>
-              <div className="font-semibold">Resignation Letters</div>
-              <div className="text-sm text-purple-300">Professional templates</div>
+              <div className="text-3xl mb-3 group-hover:animate-bounce">📝</div>
+              <div className="font-semibold group-hover:text-yellow-300 transition-colors">Resignation Letters</div>
+              <div className="text-sm text-purple-300 group-hover:text-purple-200 transition-colors">Professional templates</div>
             </a>
             <a
               href="https://www.google.com/search?q=salary+negotiation+tips"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-200 block"
+              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-300 block group hover:shadow-xl hover:bg-purple-700/50"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.2s forwards' }}
             >
-              <div className="text-3xl mb-3">💰</div>
-              <div className="font-semibold">Negotiation Guide</div>
-              <div className="text-sm text-purple-300">Get what you deserve</div>
+              <div className="text-3xl mb-3 group-hover:animate-bounce">💰</div>
+              <div className="font-semibold group-hover:text-yellow-300 transition-colors">Negotiation Guide</div>
+              <div className="text-sm text-purple-300 group-hover:text-purple-200 transition-colors">Get what you deserve</div>
             </a>
             <a
               href="https://www.google.com/search?q=freelancing+for+developers"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-200 block"
+              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-300 block group hover:shadow-xl hover:bg-purple-700/50"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.3s forwards' }}
             >
-              <div className="text-3xl mb-3">🚀</div>
-              <div className="font-semibold">Freelance Guide</div>
-              <div className="text-sm text-purple-300">Be your own boss</div>
+              <div className="text-3xl mb-3 group-hover:animate-bounce">🚀</div>
+              <div className="font-semibold group-hover:text-yellow-300 transition-colors">Freelance Guide</div>
+              <div className="text-sm text-purple-300 group-hover:text-purple-200 transition-colors">Be your own boss</div>
             </a>
             <a
               href="https://www.google.com/search?q=developer+interview+preparation"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-200 block"
+              className="p-6 bg-purple-800/50 backdrop-blur-sm rounded-2xl hover:scale-105 transform transition-all duration-300 block group hover:shadow-xl hover:bg-purple-700/50"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.4s forwards' }}
             >
-              <div className="text-3xl mb-3">🎯</div>
-              <div className="font-semibold">Interview Prep</div>
-              <div className="text-sm text-purple-300">Land your dream job</div>
+              <div className="text-3xl mb-3 group-hover:animate-bounce">🎯</div>
+              <div className="font-semibold group-hover:text-yellow-300 transition-colors">Interview Prep</div>
+              <div className="text-sm text-purple-300 group-hover:text-purple-200 transition-colors">Land your dream job</div>
             </a>
           </div>
         </div>

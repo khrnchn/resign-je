@@ -1,11 +1,29 @@
 import { useState } from 'react';
 import { useDevelopers } from '../lib/hooks';
 import Leaderboard from './Leaderboard';
+import { DeveloperCardSkeleton } from './SkeletonLoader';
 
 const DeveloperList = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const { developers, getDeveloperAwards } = useDevelopers(searchQuery);
+  const [sortBy, setSortBy] = useState<'name' | 'resignations' | 'recent'>('recent');
+  const { developers, getDeveloperAwards, isLoading } = useDevelopers(searchQuery);
+
+  const sortedAndFilteredDevelopers = [...developers].sort((a, b) => {
+    switch (sortBy) {
+      case 'name':
+        return a.name.localeCompare(b.name);
+      case 'resignations':
+        return b.resignation_count - a.resignation_count;
+      case 'recent':
+      default:
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    }
+  });
+
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
 
   return (
     <div>
@@ -15,43 +33,97 @@ const DeveloperList = () => {
           <h1 className="text-3xl font-bold hover:text-purple-300 transition-colors mb-2">
             👑 Hall of Fame
           </h1>
-          <p className="text-purple-300">Malaysian Developers Yang Dah Resign</p>
+          <p className="text-purple-300">
+            Malaysian Developers Yang Dah Resign
+            {searchQuery && (
+              <span className="ml-2 text-yellow-400">· {developers.length} result{developers.length !== 1 ? 's' : ''}</span>
+            )}
+          </p>
         </div>
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-purple-800/50 pl-10 pr-4 py-2 rounded-full text-sm placeholder-purple-300 w-[200px] focus:outline-none focus:ring-2 focus:ring-purple-400"
-          />
-          <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-purple-300">
-            search
-          </span>
+        <div className="flex items-center gap-4">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search developers..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-purple-800/50 pl-10 pr-10 py-2 rounded-full text-sm placeholder-purple-300 w-[250px] focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
+            />
+            <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-purple-300">
+              search
+            </span>
+            {searchQuery && (
+              <button
+                onClick={clearSearch}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-300 hover:text-white transition-colors"
+              >
+                <span className="material-icons text-lg">close</span>
+              </button>
+            )}
+          </div>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+            className="bg-purple-800/50 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+          >
+            <option value="recent">Recent</option>
+            <option value="name">Name</option>
+            <option value="resignations">Most Resignations</option>
+          </select>
         </div>
       </div>
 
       {/* mobile search bar */}
-      <div className="md:hidden mb-4">
+      <div className="md:hidden mb-4 space-y-3">
         <div className="relative">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search developers..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-purple-800/50 pl-10 pr-4 py-2 rounded-full text-sm placeholder-purple-300 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="bg-purple-800/50 pl-10 pr-10 py-3 rounded-full text-sm placeholder-purple-300 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-purple-300">
             search
           </span>
+          {searchQuery && (
+            <button
+              onClick={clearSearch}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-300 hover:text-white transition-colors"
+            >
+              <span className="material-icons text-lg">close</span>
+            </button>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+            className="flex-1 bg-purple-800/50 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+          >
+            <option value="recent">Recent</option>
+            <option value="name">Name</option>
+            <option value="resignations">Most Resignations</option>
+          </select>
+          {searchQuery && (
+            <div className="px-3 py-2 bg-purple-700/50 rounded-full text-xs text-purple-300 flex items-center">
+              {developers.length} result{developers.length !== 1 ? 's' : ''}
+            </div>
+          )}
         </div>
       </div>
 
       <div className="flex flex-col-reverse md:flex-row gap-4">
         <div className="flex-1 w-full">
-          {developers.length > 0 ? (
+          {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {developers.map((dev) => (
+              {[...Array(6)].map((_, index) => (
+                <DeveloperCardSkeleton key={index} />
+              ))}
+            </div>
+          ) : sortedAndFilteredDevelopers.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sortedAndFilteredDevelopers.map((dev) => (
                 <div
                   key={dev.id}
                   className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 relative overflow-hidden"
@@ -77,7 +149,7 @@ const DeveloperList = () => {
                   <h3 className="text-xl font-bold mb-1">{dev.name}</h3>
                   <p className="text-purple-300 mb-2">{dev.title}</p>
                   <p className="text-green-400 text-sm font-semibold mb-4">
-                    🎉 Resigned {Math.floor(Math.random() * 365 + 1)} days ago
+                    🎉 Resigned {Math.floor((new Date().getTime() - new Date(dev.created_at).getTime()) / (1000 * 60 * 60 * 24))} days ago
                   </p>
 
                   <div className="flex items-center text-sm text-purple-300 mb-4">
