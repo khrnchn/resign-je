@@ -100,7 +100,16 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://i.pinimg.com/736x/78/fa/ed/78faed1c22be1a1a4d46a5738762690e.jpg',
         resignation_count: 1,
         created_at: '2025-07-07'
-    }
+    },
+    {
+        id: '12',
+        name: 'Faris Sufyan',
+        title: 'Software Engineer',
+        location: 'Malaysia',
+        avatar_url: 'https://avatars.githubusercontent.com/u/47665123',
+        resignation_count: 1,
+        created_at: '2025-08-04'
+    }    
 ];
 
 // mock awards data
@@ -180,5 +189,11 @@ export const mockDeveloperAwards: DeveloperAward[] = [
         developer_id: '7',
         award_id: '6', // Fresh Start for Haikal (0 resignation)
         awarded_at: '2024-03-01T00:00:00Z'
-    }
+    },
+    {
+        id: '7',
+        developer_id: '12',
+        award_id: '6', // Fresh Start for Faris (1 resignation)
+        awarded_at: '2025-07-29T00:00:00Z'
+    }    
 ]; 
