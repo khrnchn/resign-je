@@ -53,7 +53,7 @@ export const mockDevelopers: Developer[] = [
         title: 'Machine Learning Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFJIen-mXWHOA/profile-displayphoto-shrink_400_400/B56ZYo664EGcAg-/0/1744443258594?e=1755734400&v=beta&t=QWm0__gbr258xqUn_MIVpXUQ9P6Qlk8gUFZ5O1wQXFw',
-        resignation_count: 0,
+        resignation_count: 1,
         last_resigned_at: '2025-08-01'
     },
     {
