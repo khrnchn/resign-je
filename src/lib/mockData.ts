@@ -109,6 +109,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://avatars.githubusercontent.com/u/47665123',
         resignation_count: 1,
         last_resigned_at: '2025-08-04'
+    },
+    {
+        id: '13',
+        name: 'Luqman Hakem',
+        title: 'Software Engineer | Mobile Developer',
+        location: 'Malaysia',
+        avatar_url: 'https://pbs.twimg.com/profile_images/1910094600758595584/a7ylpssK_400x400.jpg',
+        resignation_count: 8,
+        last_resigned_at: '2025-07-08'
     }
 ];
 
