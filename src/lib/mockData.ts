@@ -118,6 +118,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://pbs.twimg.com/profile_images/1910094600758595584/a7ylpssK_400x400.jpg',
         resignation_count: 8,
         last_resigned_at: '2025-07-08'
+    },
+    {
+        id: '14',
+        name: 'Fiz',
+        title: 'Software Engineer',
+        location: 'Malaysia',
+        avatar_url: 'https://f12.gg/f12loki.png',
+        resignation_count: 1,
+        last_resigned_at: '2025-10-17'
     }
 ];
 
@@ -204,5 +213,11 @@ export const mockDeveloperAwards: DeveloperAward[] = [
         developer_id: '12',
         award_id: '6', // Fresh Start for Faris (1 resignation)
         awarded_at: '2025-07-29T00:00:00Z'
+    },
+    {
+        id: '8',
+        developer_id: '14',
+        award_id: '6', // Fresh Start for Fiz (1 resignation)
+        awarded_at: '2025-10-17T00:00:00Z'
     }
 ]; 
