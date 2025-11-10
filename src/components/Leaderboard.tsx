@@ -36,6 +36,9 @@ const Leaderboard = () => {
                   src={topResigners[1].avatar_url}
                   alt={topResigners[1].name}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = '/images/blank-profile.png';
+                  }}
                 />
               </div>
               <div className="text-sm font-medium mb-1 text-center max-w-[80px] truncate">
@@ -69,6 +72,9 @@ const Leaderboard = () => {
                     src={topResigners[0].avatar_url}
                     alt={topResigners[0].name}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = '/images/blank-profile.png';
+                    }}
                   />
                 </div>
               </div>
@@ -96,6 +102,9 @@ const Leaderboard = () => {
                   src={topResigners[2].avatar_url}
                   alt={topResigners[2].name}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = '/images/blank-profile.png';
+                  }}
                 />
               </div>
               <div className="text-sm font-medium mb-1 text-center max-w-[80px] truncate">
@@ -131,6 +140,9 @@ const Leaderboard = () => {
                 src={dev.avatar_url}
                 alt={dev.name}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = '/images/blank-profile.png';
+                }}
               />
             </div>
             <div className="flex-1 min-w-0">

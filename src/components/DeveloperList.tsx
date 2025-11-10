@@ -134,6 +134,9 @@ const DeveloperList = () => {
                         src={dev.avatar_url}
                         alt={dev.name}
                         className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/blank-profile.png';
+                        }}
                       />
                     </div>
                     <div className="bg-purple-700/50 backdrop-blur-sm px-4 py-1 rounded-full">
