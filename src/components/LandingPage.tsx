@@ -117,6 +117,9 @@ const LandingPage: React.FC = () => {
                       alt={story.name}
                       className="w-12 h-12 rounded-full mr-4 ring-2 ring-purple-400/50 group-hover:ring-yellow-400/50 transition-all duration-300"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/blank-profile.png';
+                      }}
                     />
                     <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
                   </div>

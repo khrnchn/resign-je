@@ -96,7 +96,7 @@ const Settings: React.FC = () => {
             Account Actions
           </h2>
           
-          <div className="space-y-4">
+          <div className="flex gap-2">
             <button className="w-full md:w-auto px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
               🎉 Add My Resignation Story
             </button>
