@@ -26,8 +26,8 @@ export const mockDevelopers: Developer[] = [
         title: 'Senior Data Engineer',
         location: 'Malaysia',
         avatar_url: 'https://media.licdn.com/dms/image/v2/D5603AQFuh-wY3vCAWw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705242889127?e=1755734400&v=beta&t=6ynjX48z1uZdTs8l0SPA0zAlZqyBf522fYg99Y3Kzvo',
-        resignation_count: 3,
-        last_resigned_at: '2024-02-01'
+        resignation_count: 5,
+        last_resigned_at: '2026-02-01'
     },
     {
         id: '4',
