@@ -127,6 +127,15 @@ export const mockDevelopers: Developer[] = [
         avatar_url: 'https://f12.gg/f12loki.png',
         resignation_count: 1,
         last_resigned_at: '2025-10-17'
+    },
+    {
+        id: '15',
+        name: 'Jensen Huang',
+        title: 'Co-founder & ex-CEO, Nvidia',
+        location: 'United States',
+        avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg/330px-Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg',
+        resignation_count: 1,
+        last_resigned_at: '2026-11-12'
     }
 ];
 
