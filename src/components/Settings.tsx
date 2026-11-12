@@ -1,145 +1,117 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const Settings: React.FC = () => {
+const Settings = () => {
+  const [reminders, setReminders] = useState(true);
   const [notifications, setNotifications] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [resignationReminders, setResignationReminders] = useState(true);
+  const [status, setStatus] = useState("");
+
+  const switches = [
+    {
+      label: "Daily resignation reminders",
+      hint: "We don't actually send anything. You already think about it every day.",
+      on: reminders,
+      toggle: () => setReminders(!reminders),
+    },
+    {
+      label: "Success story notifications",
+      hint: "Hear about others who broke free. Usually via the group chat, not us.",
+      on: notifications,
+      toggle: () => setNotifications(!notifications),
+    },
+    {
+      label: "Night shift mode",
+      hint: "Coming soon. For now, everybody works the day shift.",
+      on: false,
+    },
+  ];
+
+  const exportData = () => {
+    const data = JSON.stringify(
+      {
+        probability: localStorage.getItem("probability"),
+        totalClicks: localStorage.getItem("totalClicks"),
+      },
+      null,
+      2
+    );
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
+    link.download = "liberation-data.json";
+    link.click();
+    URL.revokeObjectURL(link.href);
+    setStatus("Exported. Two whole numbers, all yours.");
+  };
+
+  const resetCounter = () => {
+    localStorage.removeItem("probability");
+    localStorage.removeItem("totalClicks");
+    setStatus("Punch counter reset. The clock forgives, your boss won't.");
+  };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">⚙️ Settings</h1>
-        <p className="text-purple-300">Customize your liberation experience</p>
-      </div>
+    <div className="mx-auto max-w-3xl px-4 py-10 md:py-16">
+      <h1 className="font-display text-7xl font-black uppercase leading-[0.85] md:text-9xl">Settings</h1>
+      <p className="mt-3 text-xl font-medium">Customize your liberation experience.</p>
 
-      <div className="space-y-6">
-        {/* Liberation Preferences */}
-        <div className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4 flex items-center">
-            <span className="material-icons mr-2">psychology</span>
-            Liberation Preferences
-          </h2>
-          
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="font-medium">Daily Resignation Reminders</div>
-                <div className="text-sm text-purple-300">Get motivated to quit every day</div>
-              </div>
-              <button
-                onClick={() => setResignationReminders(!resignationReminders)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  resignationReminders ? 'bg-yellow-400' : 'bg-purple-600'
-                }`}
-              >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    resignationReminders ? 'translate-x-6' : 'translate-x-1'
-                  }`}
-                />
-              </button>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="font-medium">Success Story Notifications</div>
-                <div className="text-sm text-purple-300">Hear about others who broke free</div>
-              </div>
-              <button
-                onClick={() => setNotifications(!notifications)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifications ? 'bg-yellow-400' : 'bg-purple-600'
-                }`}
-              >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    notifications ? 'translate-x-6' : 'translate-x-1'
-                  }`}
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Appearance */}
-        <div className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4 flex items-center">
-            <span className="material-icons mr-2">palette</span>
-            Appearance
-          </h2>
-          
-          <div className="flex items-center justify-between">
+      <ul className="mt-10 border-t-2 border-ink">
+        {switches.map((item) => (
+          <li key={item.label} className="flex items-center justify-between gap-6 border-b border-ink/30 py-5">
             <div>
-              <div className="font-medium">Dark Mode</div>
-              <div className="text-sm text-purple-300">Switch to dark theme (coming soon)</div>
+              <div className="text-lg font-bold">{item.label}</div>
+              <div className="text-ink/75">{item.hint}</div>
             </div>
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                darkMode ? 'bg-yellow-400' : 'bg-purple-600'
+              role="switch"
+              aria-checked={item.on}
+              aria-label={item.label}
+              disabled={!item.toggle}
+              onClick={item.toggle}
+              className={`relative h-9 w-[4.5rem] shrink-0 border-2 border-ink font-display text-sm font-black uppercase disabled:opacity-50 ${
+                item.on ? "bg-ink text-card" : "bg-stock text-ink"
               }`}
-              disabled
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  darkMode ? 'translate-x-6' : 'translate-x-1'
+                className={`absolute inset-y-1 w-7 transition-[left] duration-200 ${
+                  item.on ? "left-[2.4rem] bg-card" : "left-1 bg-ink"
                 }`}
               />
+              <span className={`absolute top-1/2 -translate-y-1/2 ${item.on ? "left-2" : "right-2"}`}>
+                {item.on ? "On" : "Off"}
+              </span>
             </button>
-          </div>
-        </div>
+          </li>
+        ))}
+      </ul>
 
-        {/* Account Actions */}
-        <div className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4 flex items-center">
-            <span className="material-icons mr-2">account_circle</span>
-            Account Actions
-          </h2>
-          
-          <div className="flex gap-2">
-            <button className="w-full md:w-auto px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
-              🎉 Add My Resignation Story
-            </button>
-            
-            <button className="w-full md:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
-              📊 Export My Liberation Data
-            </button>
-            
-            <button className="w-full md:w-auto px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors">
-              🔄 Reset Resignation Counter
-            </button>
-          </div>
-        </div>
-
-        {/* Danger Zone */}
-        <div className="bg-red-900/30 border border-red-500/50 backdrop-blur-sm rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4 flex items-center text-red-400">
-            <span className="material-icons mr-2">warning</span>
-            Danger Zone
-          </h2>
-          
-          <div className="space-y-4">
-            <div className="text-sm text-red-300 mb-4">
-              Warning: These actions cannot be undone and may affect your liberation journey.
-            </div>
-            
-            <button className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors">
-              🗑️ Delete All Data
-            </button>
-          </div>
-        </div>
-
-        {/* Motivational Quote */}
-        <div className="bg-gradient-to-r from-purple-800/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-6 text-center">
-          <div className="text-2xl mb-2">💪</div>
-          <div className="text-lg font-semibold mb-2">
-            "The only way to do great work is to love what you do."
-          </div>
-          <div className="text-purple-300">
-            - Steve Jobs (who also quit his job to start Apple)
-          </div>
-        </div>
+      <h2 className="mt-14 font-display text-4xl font-black uppercase leading-none">Your data</h2>
+      <p className="mt-2 text-ink/75">
+        Everything lives in this browser: your punch count and your odds. That's the whole database.
+      </p>
+      <div className="mt-5 flex flex-wrap gap-3">
+        <a
+          href="https://github.com/khrnchn/resign-je"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-ink px-5 py-3 font-display text-xl font-bold uppercase tracking-wide text-card hover:bg-ribbon hover:text-stock"
+        >
+          Add my resignation
+        </a>
+        <button
+          onClick={exportData}
+          className="border-2 border-ink px-5 py-3 font-display text-xl font-bold uppercase tracking-wide hover:bg-ink hover:text-card"
+        >
+          Export my liberation data
+        </button>
+        <button
+          onClick={resetCounter}
+          className="border-2 border-late px-5 py-3 font-display text-xl font-bold uppercase tracking-wide text-late hover:bg-late hover:text-stock"
+        >
+          Reset punch counter
+        </button>
       </div>
+      <p aria-live="polite" className="mt-4 min-h-[1.75rem] font-bold text-ribbon">
+        {status}
+      </p>
     </div>
   );
 };

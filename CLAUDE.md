@@ -18,17 +18,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Tech Stack
 - **Frontend**: React 18 with TypeScript
 - **Routing**: React Router v6
-- **Styling**: Tailwind CSS with purple theme
+- **Styling**: Tailwind CSS, punch clock theme (tokens in `tailwind.config.js`)
 - **State Management**: React hooks (useState, useEffect)
 - **Build Tool**: Vite
-- **Icons**: Material Icons, Heroicons, Lucide React
+- **Icons**: Lucide React
 
 ### Key Components Structure
-- `App.tsx` - Main app with routing and responsive sidebar
+- `App.tsx` - Main app with routing, top bar and mobile bottom nav
 - `LandingPage.tsx` - Homepage with Malaysian theme
-- `DeveloperList.tsx` - Hall of fame for resignees
+- `DeveloperList.tsx` - Hall of fame ("The Rack"), one time card per resignee
 - `AwardsConfig.tsx` - Awards management
-- `ShouldIResign.tsx` - Interactive resignation decision game
+- `ShouldIResign.tsx` - Time recorder game, also embedded in the landing hero
 - `Settings.tsx` - User preferences
 
 ### Data Layer
@@ -42,15 +42,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Route-based metadata configuration
 
 ### Responsive Design
-- Mobile-first approach with collapsible sidebar
+- Mobile-first approach with fixed bottom nav
 - Breakpoints: mobile (`md:hidden`) and desktop (`md:`)
-- Purple theme (`bg-purple-900`, `bg-purple-950`)
+- Colors: `card` (yellow ground), `ink`, `stock` (card paper), `ribbon` (blue, not yet), `late` (red, resigned)
 
 ## Code Conventions
 
 ### Styling
 - Use Tailwind CSS classes exclusively
-- Purple color scheme: `purple-900`, `purple-950`, `purple-300`
+- Fonts: `font-display` (Big Shoulders Display), `font-dot` (Doto, times and counts), `font-sans` (Familjen Grotesk)
 - Responsive utilities: `md:` prefix for desktop breakpoints
 - Mobile-first design approach
 
@@ -58,7 +58,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Functional components with hooks
 - Props destructuring in component signatures
 - TypeScript interfaces for all prop types
-- Material Icons for UI elements
+- Lucide icons for UI elements
 
 ### File Organization
 - Components in `/src/components/`

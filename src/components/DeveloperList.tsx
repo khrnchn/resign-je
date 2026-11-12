@@ -1,219 +1,150 @@
 import { useState } from 'react';
+import { Search, X } from 'lucide-react';
 import { useDevelopers } from '../lib/hooks';
-import Leaderboard from './Leaderboard';
-import { DeveloperCardSkeleton } from './SkeletonLoader';
+
+const sorts = [
+  { value: 'resignations', label: 'Most resigned' },
+  { value: 'recent', label: 'Recent' },
+  { value: 'name', label: 'Name' },
+] as const;
 
 const DeveloperList = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [sortBy, setSortBy] = useState<'name' | 'resignations' | 'recent'>('recent');
-  const { developers, getDeveloperAwards, isLoading } = useDevelopers(searchQuery);
+  const [sortBy, setSortBy] = useState<(typeof sorts)[number]['value']>('resignations');
+  const { developers, getDeveloperAwards } = useDevelopers(searchQuery);
 
-  const sortedAndFilteredDevelopers = [...developers].sort((a, b) => {
-    switch (sortBy) {
-      case 'name':
-        return a.name.localeCompare(b.name);
-      case 'resignations':
-        return b.resignation_count - a.resignation_count;
-      case 'recent':
-      default:
-        return new Date(b.last_resigned_at).getTime() - new Date(a.last_resigned_at).getTime();
-    }
+  const sorted = [...developers].sort((a, b) => {
+    if (sortBy === 'name') return a.name.localeCompare(b.name);
+    if (sortBy === 'resignations') return b.resignation_count - a.resignation_count;
+    return new Date(b.last_resigned_at).getTime() - new Date(a.last_resigned_at).getTime();
   });
 
-  const clearSearch = () => {
-    setSearchQuery('');
-  };
-
   return (
-    <div>
-      {/* search bar - only visible on desktop */}
-      <div className="hidden md:flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold hover:text-purple-300 transition-colors mb-2">
-            👑 Hall of Fame
-          </h1>
-          <p className="text-purple-300">
-            Malaysian Developers Yang Dah Resign
-            {searchQuery && (
-              <span className="ml-2 text-yellow-400">· {developers.length} result{developers.length !== 1 ? 's' : ''}</span>
-            )}
-          </p>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search developers..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-purple-800/50 pl-10 pr-10 py-2 rounded-full text-sm placeholder-purple-300 w-[250px] focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
-            />
-            <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-purple-300">
-              search
-            </span>
-            {searchQuery && (
-              <button
-                onClick={clearSearch}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-300 hover:text-white transition-colors"
-              >
-                <span className="material-icons text-lg">close</span>
-              </button>
-            )}
-          </div>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="bg-purple-800/50 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
-          >
-            <option value="recent">Recent</option>
-            <option value="name">Name</option>
-            <option value="resignations">Most Resignations</option>
-          </select>
-        </div>
-      </div>
+    <div className="mx-auto max-w-6xl px-4 py-10 md:py-16">
+      <h1 className="font-display text-7xl font-black uppercase leading-[0.85] md:text-9xl">The Rack</h1>
+      <p className="mt-3 text-xl font-medium">
+        Malaysian developers yang dah resign. {developers.length} card{developers.length !== 1 ? 's' : ''}
+        {searchQuery ? ` matching "${searchQuery}"` : ' on the wall'}.
+      </p>
 
-      {/* mobile search bar */}
-      <div className="md:hidden mb-4 space-y-3">
-        <div className="relative">
+      <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <label className="relative block md:w-80">
+          <span className="sr-only">Search developers</span>
+          <Search aria-hidden className="pointer-events-none absolute left-0 top-1/2 h-5 w-5 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search developers..."
+            placeholder="Search name or title"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-purple-800/50 pl-10 pr-10 py-3 rounded-full text-sm placeholder-purple-300 w-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="field px-8"
           />
-          <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-purple-300">
-            search
-          </span>
           {searchQuery && (
             <button
-              onClick={clearSearch}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-300 hover:text-white transition-colors"
+              onClick={() => setSearchQuery('')}
+              aria-label="Clear search"
+              className="absolute right-0 top-1/2 -translate-y-1/2 hover:text-late"
             >
-              <span className="material-icons text-lg">close</span>
+              <X className="h-5 w-5" />
             </button>
           )}
-        </div>
-        <div className="flex gap-2">
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="flex-1 bg-purple-800/50 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
-          >
-            <option value="recent">Recent</option>
-            <option value="name">Name</option>
-            <option value="resignations">Most Resignations</option>
-          </select>
-          {searchQuery && (
-            <div className="px-3 py-2 bg-purple-700/50 rounded-full text-xs text-purple-300 flex items-center">
-              {developers.length} result{developers.length !== 1 ? 's' : ''}
-            </div>
-          )}
+        </label>
+
+        <div role="group" aria-label="Sort cards" className="flex border-2 border-ink">
+          {sorts.map((sort) => (
+            <button
+              key={sort.value}
+              onClick={() => setSortBy(sort.value)}
+              aria-pressed={sortBy === sort.value}
+              className={`flex-1 px-4 py-2 font-display text-lg font-bold uppercase tracking-wide ${
+                sortBy === sort.value ? 'bg-ink text-card' : 'hover:bg-ink/10'
+              }`}
+            >
+              {sort.label}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row gap-4">
-        <div className="flex-1 w-full">
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[...Array(6)].map((_, index) => (
-                <DeveloperCardSkeleton key={index} />
-              ))}
-            </div>
-          ) : sortedAndFilteredDevelopers.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sortedAndFilteredDevelopers.map((dev) => (
-                <div
-                  key={dev.id}
-                  className="bg-purple-800/50 backdrop-blur-sm rounded-2xl p-6 relative overflow-hidden"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl overflow-hidden bg-yellow-400">
-                      <img
-                        src={dev.avatar_url}
-                        alt={dev.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = '/images/blank-profile.png';
-                        }}
-                      />
+      {sorted.length > 0 ? (
+        <ul className="mt-10 grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {sorted.map((dev) => {
+            const daysFree = Math.floor(
+              (Date.now() - new Date(dev.last_resigned_at).getTime()) / (1000 * 60 * 60 * 24)
+            );
+            return (
+              <li key={dev.id} className="group relative pb-4">
+                <article className="timecard flex h-full flex-col bg-stock px-4 pb-6 pt-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-3">
+                  <div className="flex items-start gap-3 border-b-2 border-ink pb-3">
+                    <img
+                      src={dev.avatar_url}
+                      alt=""
+                      loading="lazy"
+                      className="h-14 w-14 shrink-0 rounded-sm object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/blank-profile.png';
+                      }}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <h2 className="font-display text-3xl font-black uppercase leading-none">{dev.name}</h2>
+                      <p className="mt-1 text-sm text-ink/75">{dev.title}</p>
                     </div>
-                    <div className="bg-purple-700/50 backdrop-blur-sm px-4 py-1 rounded-full">
-                      <span className="text-sm font-medium">
-                        {new Date(dev.last_resigned_at).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric'
-                        })}
-                      </span>
+                    <div className="pr-3 text-right text-late">
+                      <div className="font-dot text-5xl font-black leading-none">{dev.resignation_count}</div>
+                      <div className="text-xs font-bold uppercase tracking-wider">kali</div>
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-1">{dev.name}</h3>
-                  <p className="text-purple-300 mb-2">{dev.title}</p>
-                  <p className="text-green-400 text-sm font-semibold mb-4">
-                    🎉 Resigned {Math.floor((new Date().getTime() - new Date(dev.last_resigned_at).getTime()) / (1000 * 60 * 60 * 24))} days ago
-                  </p>
-
-                  <div className="flex items-center text-sm text-purple-300 mb-4">
-                    <span className="material-icons text-sm mr-1">location_on</span>
-                    {dev.location}
-                  </div>
-
-                  <div className="flex items-center text-sm text-yellow-400 mb-4">
-                    <span className="material-icons text-sm mr-1">trending_up</span>
-                    {dev.resignation_count} resignations
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {getDeveloperAwards(dev.id).map((award) => (
+                  <div className="mt-3 grid grid-cols-5 gap-1.5">
+                    {Array.from({ length: Math.max(10, dev.resignation_count) }, (_, i) => (
                       <div
-                        key={award.id}
-                        className="bg-purple-700/50 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1.5"
-                        title={award.description}
+                        key={i}
+                        className="flex h-9 items-center justify-center border border-ink/30 text-late"
                       >
-                        <span>{award.icon}</span>
-                        <span className="text-sm font-medium">{award.name}</span>
+                        {i < dev.resignation_count && <span className="stamp text-sm">Out</span>}
                       </div>
                     ))}
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-              <div className="bg-purple-800/50 backdrop-blur-sm rounded-full p-4 mb-4">
-                <span className="material-icons text-4xl text-purple-300">search_off</span>
-              </div>
-              <h3 className="text-2xl font-bold mb-2">No developers found lah</h3>
-              <p className="text-purple-300 max-w-md">
-                Cannot find any developers matching "{searchQuery}". Try different search term or be the first to join our Hall of Fame!
-              </p>
-            </div>
-          )}
-        </div>
 
-        {/* Leaderboard - collapsible on mobile, always visible on desktop */}
-        <div className="w-full md:w-fit">
-          {/* Mobile toggle button */}
-          <div 
-            className="md:hidden flex justify-between items-center bg-purple-800/50 backdrop-blur-sm rounded-2xl p-4 mb-2 cursor-pointer"
-            onClick={() => setIsLeaderboardOpen(!isLeaderboardOpen)}
+                  <div className="mt-3 flex justify-between gap-2 font-dot text-sm font-black uppercase">
+                    <span>
+                      Last out{' '}
+                      {new Date(dev.last_resigned_at).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
+                    </span>
+                    <span className="text-ribbon">{daysFree} hari bebas</span>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap gap-2 text-ribbon">
+                    {getDeveloperAwards(dev.id).map((award) => (
+                      <span key={award.id} title={award.description} className="stamp text-base">
+                        {award.icon} {award.name}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+                {/* rack pocket the card sits in */}
+                <div className="absolute inset-x-0 bottom-0 h-5 rounded-b-md bg-ink" />
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <div className="mt-16 max-w-xl">
+          <h2 className="font-display text-5xl font-black uppercase leading-[0.9]">No developers found lah</h2>
+          <p className="mt-3 text-lg">
+            Cannot find any card matching "{searchQuery}". Try a different search, or resign and be the first.
+          </p>
+          <button
+            onClick={() => setSearchQuery('')}
+            className="mt-6 bg-ink px-5 py-3 font-display text-xl font-bold uppercase tracking-wide text-card hover:bg-ribbon hover:text-stock"
           >
-            <h2 className="text-xl font-bold">🏆 Top Resigners</h2>
-            <div className="bg-purple-700 p-1.5 rounded-lg flex items-center justify-center h-8 w-8">
-              <span className="material-icons text-xl">
-                {isLeaderboardOpen ? "expand_less" : "expand_more"}
-              </span>
-            </div>
-          </div>
-          
-          {/* Leaderboard content - always visible on desktop, toggleable on mobile */}
-          <div className={`${isLeaderboardOpen ? 'block' : 'hidden'} md:block`}>
-            <Leaderboard />
-          </div>
+            Clear search
+          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
