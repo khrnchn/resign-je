@@ -8,8 +8,8 @@ export const mockDevelopers: Developer[] = [
         title: 'Software Engineer',
         location: 'Malaysia',
         avatar_url: 'https://www.farhanhelmy.com/farhan.png',
-        resignation_count: 5,
-        last_resigned_at: '2025-07-01'
+        resignation_count: 6,
+        last_resigned_at: '2026-11-12'
     },
     {
         id: '2',
