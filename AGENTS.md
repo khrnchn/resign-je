@@ -1,17 +1,16 @@
 # Agent Guidelines for resign-je
 
 ## Build/Lint/Test Commands
-- `npm run dev` - Start development server
-- `npm run build` - Build for production (runs tsc && vite build)
-- `npm run lint` - Run ESLint with TypeScript support
-- `npm run preview` - Preview production build
+- `bun run dev` - Start development server
+- `bun run build` - Build for production (runs tsc && vite build)
+- `bun run preview` - Preview production build
 - No test framework configured
 
 ## Code Style Guidelines
 - **Language**: TypeScript with strict mode enabled
 - **Framework**: React 18 with Vite, React Router, TailwindCSS
 - **Imports**: Group React imports first, then third-party, then local components
-- **Components**: Use React.FC type annotation, export default at bottom
+- **Components**: Plain function components, export default at bottom
 - **Naming**: PascalCase for components, camelCase for variables/functions
 - **State**: Use useState hooks, store persistent data in localStorage
 - **Styling**: TailwindCSS classes, responsive design with md: breakpoints
@@ -20,5 +19,4 @@
 - **Error Handling**: Handle edge cases gracefully, use optional chaining
 
 ## Dependencies
-- React Query for data fetching, Supabase for backend, React Hook Form for forms
-- Heroicons/Lucide React for icons, clsx for conditional classes, date-fns for dates
+- React Router for routing, Lucide React for icons. No backend, data lives in `src/lib/mockData.ts`.

@@ -29,8 +29,19 @@ const verdicts = [
   "All eight? Why are you still reading this. Resign je lah.",
 ];
 
+const resumePrompt = `I'm updating my resume before I leave my current job. Study my contributions in this repository and turn them into resume material.
+
+1. Find my work. Run git log --author="<my name or email>" --no-merges --stat, then read the PRs, tickets and docs I wrote. If you can't tell which author is me, ask.
+2. Group it into 4 to 6 themes: features shipped, systems owned, performance or reliability wins, incidents handled, people mentored.
+3. For each theme write 1 to 2 resume bullets. Strong verb first, then what I built, the tech used, and a measurable result. Only use numbers you can find in the code, commits or docs. If a number is missing, ask me. Never invent one.
+4. Leave out anything confidential: internal codenames, customer names, secrets, unreleased plans.
+5. If I give you my current resume, update the section for this job in place and keep its format. Otherwise output the bullets as Markdown.
+
+Finish with 3 questions about impact you could not verify, so I can fill the gaps.`;
+
 const LandingPage = () => {
   const [ticked, setTicked] = useState<number[]>([]);
+  const [copied, setCopied] = useState(false);
 
   const totalResignations = mockDevelopers.reduce((sum, dev) => sum + dev.resignation_count, 0);
   const topResigners = [...mockDevelopers]
@@ -157,7 +168,34 @@ const LandingPage = () => {
         </ul>
       </section>
 
-      <section className="border-t-2 border-ink">
+      <section className="bg-ink text-stock">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1fr_1.2fr] md:gap-16 md:py-24">
+          <div>
+            <h2 className="font-display text-6xl font-black uppercase leading-[0.9] text-card md:text-8xl">
+              Resume dulu, resign kemudian
+            </h2>
+            <p className="mt-6 max-w-sm text-xl">
+              Paste this into your AI agent inside the company repo, while you still have access. It digs up what you
+              actually shipped and writes it into your resume.
+            </p>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(resumePrompt);
+                setCopied(true);
+              }}
+              className="mt-8 bg-card px-6 py-4 font-display text-2xl font-bold uppercase tracking-wide text-ink hover:bg-stock"
+            >
+              {copied ? "Copied. Go paste." : "Copy the prompt"}
+            </button>
+          </div>
+
+          <pre className="timecard whitespace-pre-wrap bg-stock px-5 py-6 font-sans text-base leading-relaxed text-ink md:px-8">
+            {resumePrompt}
+          </pre>
+        </div>
+      </section>
+
+      <section>
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
           <h2 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
             Resigned already? Claim your card.

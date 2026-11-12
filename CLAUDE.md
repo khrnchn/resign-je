@@ -8,10 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- `npm run dev` - Start development server (Vite)
-- `npm run build` - Build for production (TypeScript compilation + Vite build)
-- `npm run lint` - Run ESLint checks
-- `npm run preview` - Preview production build locally
+- `bun run dev` - Start development server (Vite)
+- `bun run build` - Build for production (TypeScript compilation + Vite build)
+- `bun run preview` - Preview production build locally
 
 ## Architecture
 
