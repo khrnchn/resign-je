@@ -238,4 +238,10 @@ export const mockDeveloperAwards: DeveloperAward[] = [
         award_id: '6', // Fresh Start for Fiz (1 resignation)
         awarded_at: '2025-10-17T00:00:00Z'
     }
+    ,{
+        id: '9',
+        developer_id: '16',
+        award_id: '6', // Fresh Start for Arif Johar (1 resignation)
+        awarded_at: '2025-04-16T00:00:00Z'
+    }
 ]; 
