@@ -138,6 +138,15 @@ export const mockDevelopers: Developer[] = [
         last_resigned_at: '2025-04-16'
     },
     {
+        id: '17',
+        name: 'Ariff Saad',
+        title: 'Software Engineer',
+        location: 'Malaysia',
+        avatar_url: 'https://github.com/arffsaad.png',
+        resignation_count: 4,
+        last_resigned_at: '2026-01-01'
+    },
+    {
         id: '15',
         name: 'Jensen Huang',
         title: 'Co-founder & ex-CEO, Nvidia',
