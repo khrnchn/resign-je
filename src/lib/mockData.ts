@@ -140,11 +140,11 @@ export const mockDevelopers: Developer[] = [
     {
         id: '17',
         name: 'Ariff Saad',
-        title: 'Software Engineer',
+        title: 'AI Infrastructure and Security Specialist',
         location: 'Malaysia',
         avatar_url: 'https://github.com/arffsaad.png',
         resignation_count: 4,
-        last_resigned_at: '2026-01-01'
+        last_resigned_at: '2026-01-20'
     },
     {
         id: '15',
