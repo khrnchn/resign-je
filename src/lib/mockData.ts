@@ -129,6 +129,15 @@ export const mockDevelopers: Developer[] = [
         last_resigned_at: '2025-10-17'
     },
     {
+        id: '16',
+        name: 'Arif Johar',
+        title: 'DevOps Engineer',
+        location: 'Malaysia',
+        avatar_url: 'https://media.licdn.com/dms/image/v2/D4D03AQELQZRQWRlJag/profile-displayphoto-shrink_400_400/B4DZZq6KguGcAg-/0/1745550354949?e=1796256000&v=beta&t=HDNYrGkMkqNHJYDbCx46sz6Ji1mPX0Fy_g8IP8DZf5A',
+        resignation_count: 1,
+        last_resigned_at: '2026-11-13'
+    },
+    {
         id: '15',
         name: 'Jensen Huang',
         title: 'Co-founder & ex-CEO, Nvidia',
